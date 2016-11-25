@@ -9,6 +9,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'shared/header' %>
+    <div class="container">
+      <%= yield %>
+      <%= render 'shared/flash_message' %>
+    </div>
   </body>
 </html>

@@ -1,0 +1,9 @@
+<script>
+  <% if flash[:notice] %>
+    flashNotification( "<%= flash[:notice] %>", 'success', 3000)
+  <% end %>
+
+  <% if (flash[:alert]) %>
+    flashNotification("<%= flash[:alert] %>", 'error')
+  <% end %>
+</script>
