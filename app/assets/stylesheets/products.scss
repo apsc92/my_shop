@@ -1,0 +1,71 @@
+// Place all the styles related to the Products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+ul.products {
+  font-size:0.9em;
+  margin:25px 0;
+  overflow:hidden;
+  li {
+    margin-bottom:15px;
+    width:50%;
+    float:left;
+    height:140px;
+    div.img {
+      background-repeat:no-repeat;
+      background-size:contain;
+      background-position: center 0;
+      width:50%;
+      height:120px  ;
+      float:left;
+    }
+    h4 {margin-left:50%; color:#216D74; font-size:1.1em; }
+    h4 a { text-decoration:none;}
+    h4 a:hover { text-decoration:underline;}
+    p.info {margin-left:50%; margin:6px 0 10px 0; font-size:0.85em; line-height:1.7; color:#444;}
+    p.buttons { float:right; margin-top:0;}
+    p.buttons a { font-size:0.75em; font-weight:bold; background:#BEBEBE; color:#fff; text-decoration:none; text-transform:uppercase; padding:3px 6px; border-radius:3px;}
+    p.buttons a.add { background-color:#535353;}
+    p.price {margin-left:50%; color:#222; font-size:1.0em; font-weight:bold;}
+  }
+}
+
+
+section.content {
+  background:#fff;
+  padding-bottom:30px;
+  overflow:hidden;
+
+
+  // Sidebar
+  section.sidebar {
+    float:right;
+    width:25%;
+    div.basket {
+      background:image-url('bag.svg') #DFF0F1 no-repeat 18px 18px;
+      background-size:14px;
+      color:#216D74;
+      font-size:0.8em;
+      line-height:1.6;
+      border-bottom-left-radius:8px;
+      border-bottom-right-radius:8px;
+      margin-bottom:25px;
+      padding:15px;
+      padding-left:50px;
+      p.buttons {
+        margin-top:15px;
+        a {
+          display:inline-block;
+          padding:2px 7px;
+          background:#226E75;
+          color:#fff;
+          text-decoration:none;
+          border-radius:4px;
+          margin-right:4px;
+          &.checkout { background:#333;}
+        }
+      }
+    }
+  }
+
+}

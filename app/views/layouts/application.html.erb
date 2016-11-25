@@ -10,9 +10,15 @@
 
   <body>
     <%= render 'shared/header' %>
-    <div class="container">
-      <%= yield %>
-      <%= render 'shared/flash_message' %>
-    </div>
+    <section class="content">
+      <div class="inner">
+        <section class="sidebar">
+          <%= render 'shared/basket' %>
+        </section>
+        <section>
+          <%= yield %>
+        </section>
+      </div>
+    </section>
   </body>
 </html>
