@@ -9,12 +9,15 @@
   </head>
 
   <body>
+    <%= render 'shared/flash_message' %>
     <%= render 'shared/header' %>
     <section class="content">
       <div class="inner">
-        <section class="sidebar">
-          <%= render 'shared/basket' %>
-        </section>
+        <% if !@no_basket %>
+          <section class="sidebar">
+            <%= render 'shared/basket' %>
+          </section>
+        <% end %>
         <section>
           <%= yield %>
         </section>

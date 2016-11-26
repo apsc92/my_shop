@@ -3,7 +3,7 @@
     <p class="quantity"><b><%= pluralize current_order.total_items, 'item' %></b> in your cart</p>
     <p class="amount"><b><%= number_to_currency current_order.total_cost, { :unit => "£"} %></b></p>
     <p class="buttons">
-      <%= link_to "View cart & checkout", '#', :class => 'checkout' %>
+      <%= link_to "View cart & checkout", checkout_path, :class => 'checkout' %>
     </p>
   <% else %>
     <p class="empty"><b>Your cart is empty.</b> </p>

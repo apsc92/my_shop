@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
         @current_order
       else
         order = Order.new(status: 'building')
+        #Not validating as we don't have customer info at this stage
+        order.save(validate: false)
         session[:order_id] = order.id
         order
       end

@@ -5,7 +5,7 @@
     <li>
       <div class="img"></div>
       <h4>
-        <%= link_to product.name, '#' %>
+        <%= link_to product.name, product_path(product) %>
       </h4>
       <p class="info">
         <%= truncate product.description, :length => 90 %>

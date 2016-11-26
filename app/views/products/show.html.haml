@@ -1,0 +1,14 @@
+.row.col-md-6.margin-top
+  .panel.panel-primary
+    .panel-heading
+      Product Detail
+    .panel-body
+      %h2= @product.name
+      %p.intro= @product.description
+      %p.price= number_to_currency @product.price, { :unit => "£"}
+      = form_tag buy_product_path(@product.id), id: 'product_detail' do
+        %p
+          .col-md-4
+            = select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9]), class: 'form-control'
+          .col-md-4
+            = submit_tag 'Add to cart', class: 'adding_to_basket form-control btn btn-success'
