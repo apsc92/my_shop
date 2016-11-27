@@ -1,0 +1,22 @@
+%table.table.table-striped.table-responsive
+  %thead
+    %tr
+      %th #
+      %th Product Name
+      %th Quantity
+      %th Price(£)
+      %th Action
+  %tbody
+    - @order_items.each_with_index do |item, index|
+      %tr
+        %td= index + 1
+        %td= item.product.name
+        %td= item.quantity
+        %td= item.cost
+        %td
+          = link_to 'Remove', order_item_path(item), method: :delete, class: "btn btn-danger btn-xs"
+    %tr
+      %td
+      %td Total
+      %td
+      %td= current_order.total_cost

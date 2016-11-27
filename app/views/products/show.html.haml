@@ -5,7 +5,7 @@
     .panel-body
       %h2= @product.name
       %p.intro= @product.description
-      %p.price= number_to_currency @product.price, { :unit => "£"}
+      %p.price= show_in_currency @product.price
       = form_tag buy_product_path(@product.id), id: 'product_detail' do
         %p
           .col-md-4

@@ -8,5 +8,9 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'checkout' => 'orders#checkout', :as => 'checkout'
+  resources :order_items, only: [:destroy]
+
+  match 'checkout' => 'orders#checkout', :as => 'checkout', via: [:get, :patch]
+  match 'apply_promocode' => 'orders#apply_promocode', via: [:post]
+  delete 'remove_promocode/:promocode_id' => 'orders#remove_promocode', :as => 'remove_promocode'
 end

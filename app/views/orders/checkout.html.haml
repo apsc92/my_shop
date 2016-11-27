@@ -1,0 +1,18 @@
+- @no_basket = true
+.row.col-md-9.margin-top
+  .panel.panel-primary
+    .panel-heading
+      Build Order
+    .panel-body
+      = render 'orders/order_listing'
+
+      - if @applied_promos.present?
+        = render 'orders/promocode_listing'
+
+      .row
+        = form_tag apply_promocode_path do
+          %p
+            .col-md-4
+              %input.form-control{:name => "promocode", :type => "text", placeholder: 'Apply promocodes here', :required => true}
+            .col-md-2
+              = submit_tag 'Apply', class: 'form-control btn btn-primary'

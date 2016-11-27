@@ -11,7 +11,7 @@
         <%= truncate product.description, :length => 90 %>
       </p>
       <p class="price">
-        <%= number_to_currency product.price, { :unit => "£"} %>
+        <%= show_in_currency product.price %>
       </p>
     </li>
   <% end %>

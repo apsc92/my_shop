@@ -1,0 +1,13 @@
+%table.table.table-striped.table-responsive
+  %thead
+    %tr
+      %th #
+      %th Promocode
+      %th Action
+  %tbody
+    - @applied_promos.each_with_index do |promo, index|
+      %tr
+        %td= index + 1
+        %td= promo.name
+        %td
+          = link_to 'Remove', remove_promocode_path(promo.id), method: :delete, class: "btn btn-danger btn-xs"
