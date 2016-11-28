@@ -55,4 +55,6 @@ gem 'rubocop'
 
 gem 'haml'
 
+gem 'attr_encrypted'
+
 ruby '2.3.0'
