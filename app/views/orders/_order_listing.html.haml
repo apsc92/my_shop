@@ -11,12 +11,17 @@
       %tr
         %td= index + 1
         %td= item.product.name
-        %td= item.quantity
+        %td.hidden.order_item_id= item.id
+        %td
+          .col-md-6
+            = select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9], selected = item.quantity), class: 'form-control', id: 'item_quantity', :onchange => "itemChange()"
+
         %td= item.cost.round(2)
+
         %td
           = link_to 'Remove', order_item_path(item), method: :delete, class: "btn btn-danger btn-xs"
     %tr
       %td
-      %td Total
+      %td Total(Discount applied)
       %td
       %td= current_order.total_cost
