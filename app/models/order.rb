@@ -7,7 +7,7 @@ class Order < ApplicationRecord
   before_validation do
     if self.status == 'building' && self.customer.nil?
       # Dummy Customer
-      customer = Customer.create(name: 'customer1', email: 'customer1@gmail.com')
+      customer = Customer.find_or_create_by(name: 'customer1', email: 'customer1@gmail.com')
       self.customer = customer
       self.save
     end
@@ -22,7 +22,11 @@ class Order < ApplicationRecord
       item = self.order_items.new(quantity: quantity, product: product)
       item.save
     end
+  end
 
+  def confirm
+    self.status = 'confirmed'
+    self.save
   end
 
   def has_items?

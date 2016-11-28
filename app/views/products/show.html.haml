@@ -3,12 +3,13 @@
     .panel-heading
       Product Detail
     .panel-body
-      %h2= @product.name
-      %p.intro= @product.description
-      %p.price= show_in_currency @product.price
-      = form_tag buy_product_path(@product.id), id: 'product_detail' do
-        %p
-          .col-md-4
-            = select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9]), class: 'form-control'
-          .col-md-4
-            = submit_tag 'Add to cart', class: 'adding_to_basket form-control btn btn-success'
+      .row.col-md-8
+        %h2= @product.name
+        %h4= show_in_currency @product.price
+      .row.col-md-8
+        = form_tag buy_product_path(@product.id), id: 'product_detail' do
+          %p
+            .col-md-4
+              = select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9]), class: 'form-control'
+            .col-md-4
+              = submit_tag 'Add to cart', class: 'adding_to_basket form-control btn btn-success'

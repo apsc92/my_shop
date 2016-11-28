@@ -16,3 +16,5 @@
               %input.form-control{:name => "promocode", :type => "text", placeholder: 'Apply promocodes here', :required => true}
             .col-md-2
               = submit_tag 'Apply', class: 'form-control btn btn-primary'
+
+      = render 'orders/customer_detail'
