@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
   def apply_promocode
     promocode = Promocode.find_by_name(params[:promocode])
     if promocode # Check if promocode is correct
-      if promocode_applicable?
+      if promocode_applicable?(promocode)
         current_order.applied_promo_ids << promocode.id
         current_order.save
       end
@@ -52,14 +52,14 @@ class OrdersController < ApplicationController
 
   private
 
-  def promocode_applicable?
+  def promocode_applicable?(promocode)
     # Is promocode already applied
     # Is promocode allowed in conjunction with other codes
     # If discount is flat then total cost should be above 0 after applying
     promocode_applicable = true
     if current_order.applied_promo_ids.present?
       applied_promos = Promocode.where(id: current_order.applied_promo_ids)
-      if applied_promo_ids.include? promocode.id
+      if current_order.applied_promo_ids.include? promocode.id
         flash[:alert] = 'Promocode already applied'
         promocode_applicable = false
       # Check promocode can be applied in conjunction
