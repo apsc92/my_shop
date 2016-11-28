@@ -1,7 +1,7 @@
 <div class="basket">
   <% if has_order? && current_order.has_items? %>
     <p class="quantity"><b><%= pluralize current_order.total_items, 'item' %></b> in your cart</p>
-    <p class="amount"><b><%= show_in_currency current_order.total_cost %></b></p>
+    <p class="amount"><b><%= show_in_currency current_order.total_cost.round(2) %></b></p>
     <p class="buttons">
       <%= link_to "View cart & checkout", checkout_path, :class => 'checkout' %>
     </p>
