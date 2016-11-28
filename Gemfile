@@ -54,3 +54,5 @@ gem "font-awesome-rails"
 gem 'rubocop'
 
 gem 'haml'
+
+ruby '2.3.0'
