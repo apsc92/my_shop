@@ -4,10 +4,10 @@
     .panel-heading
       Product Details
     .panel-body
-      = render 'orders/order_listing'
+      = render 'orders/order_listing', final_order: false
 
       - if @applied_promos.present?
-        = render 'orders/promocode_listing'
+        = render 'orders/promocode_listing', final_order: false
 
       .row
         = form_tag apply_promocode_path do

@@ -1,10 +1,13 @@
 class OrdersController < ApplicationController
+  before_action :load_promocodes_and_customer, only: [:checkout]
+  before_action :load_order_and_items, only: [:checkout, :confirm_order]
+
+  def show
+    @order = Order.find(params[:id])
+    @order_items = @order.order_items
+  end
 
   def checkout
-    @order = current_order
-    @order_items = current_order.order_items
-    @applied_promos = Promocode.where(id: current_order.applied_promo_ids)
-    @customer = current_order.customer
     @credit_card = CreditCard.new(customer: @customer)
   end
 
@@ -23,20 +26,20 @@ class OrdersController < ApplicationController
 
   def confirm_order
     begin
-      current_order.address = Address.create(order_params[:address])
+      @order.address = Address.create(order_params[:address])
       customer_params = order_params[:customer]
       existing_customer = Customer.where(email: customer_params[:email]).first
       if existing_customer
-        current_order.customer = existing_customer
-        current_order.save
+        @order.customer = existing_customer
+        @order.save
       end
-      customer = current_order.customer
-      customer.credit_card = CreditCard.create(customer_params[:credit_card])
+      customer = @order.customer
+      customer.credit_cards << CreditCard.create(customer_params[:credit_card])
       customer.update_attributes(name: customer_params[:name], email: customer_params[:email])
-      current_order.confirm
+      @order.confirm
       session[:order_id] = nil
       flash[:notice] = 'Order successfully placed and will be delivered your address'
-      redirect_to root_path
+      redirect_to order_path(@order.id)
     rescue
       flash[:alert] = 'Problem encountered while placing order.Please retry'
       redirect_to checkout_path
@@ -76,5 +79,15 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(customer:  [:name, :email, credit_card: [:owner_name, :number]],
       address: [:street_address, :city])
+  end
+
+  def load_order_and_items
+    @order = current_order
+    @order_items = current_order.order_items
+  end
+
+  def load_promocodes_and_customer
+    @applied_promos = Promocode.where(id: current_order.applied_promo_ids)
+    @customer = current_order.customer
   end
 end

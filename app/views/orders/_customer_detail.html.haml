@@ -13,7 +13,7 @@
               = customer_form.email_field :email, class: 'form-control', required: :true, value: '', placeholder: 'customer1@gmail.com'
             .form-group
               = customer_form.label :name
-              = customer_form.number_field :name, class: 'form-control', value: ''
+              = customer_form.text_field :name, class: 'form-control', value: ''
               %h3 Card Details
               = customer_form.fields_for @credit_card do |credit_card_form|
                 .form-group

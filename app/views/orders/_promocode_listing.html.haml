@@ -9,5 +9,6 @@
       %tr
         %td= index + 1
         %td= promo.name
-        %td
-          = link_to 'Remove', remove_promocode_path(promo.id), method: :delete, class: "btn btn-danger btn-xs"
+        - if !final_order
+          %td
+            = link_to 'Remove', remove_promocode_path(promo.id), method: :delete, class: "btn btn-danger btn-xs"

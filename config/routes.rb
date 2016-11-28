@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :orders, only: [:show]
   resources :order_items, only: [:destroy, :update]
   match 'checkout' => 'orders#checkout', :as => 'checkout', via: [:get, :patch]
   match 'apply_promocode' => 'orders#apply_promocode', via: [:post]

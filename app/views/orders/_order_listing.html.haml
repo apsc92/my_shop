@@ -5,7 +5,8 @@
       %th Product Name
       %th Quantity
       %th Price(£)
-      %th Action
+      - if !final_order
+        %th Action
   %tbody
     - @order_items.each_with_index do |item, index|
       %tr
@@ -14,14 +15,14 @@
         %td.hidden.order_item_id= item.id
         %td
           .col-md-6
-            = select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9], selected = item.quantity), class: 'form-control', id: 'item_quantity', :onchange => "itemChange()"
+            = select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9], selected = item.quantity), class: 'form-control', id: 'item_quantity', :onchange => "itemChange()", disabled: final_order
 
         %td= item.cost.round(2)
-
-        %td
-          = link_to 'Remove', order_item_path(item), method: :delete, class: "btn btn-danger btn-xs"
+        - if !final_order
+          %td
+            = link_to 'Remove', order_item_path(item), method: :delete, class: "btn btn-danger btn-xs"
     %tr
       %td
       %td Total(Discount applied)
       %td
-      %td= current_order.total_cost
+      %td= @order.total_cost
