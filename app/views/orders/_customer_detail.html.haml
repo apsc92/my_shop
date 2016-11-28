@@ -16,7 +16,7 @@
             = credit_card_form.text_field :number, class: 'form-control', required: :true, placeholder: 'Card no'
           .form-group
             = credit_card_form.label :owner_name
-            = credit_card_form.text_field :owner_name, class: 'form-control', required: :true, placeholder: 'Name on card'
+            = credit_card_form.text_field :owner_name, class: 'form-control', placeholder: 'Name on card'
     %h3 Billing address
     = order_form.fields_for Address.new do |address_form|
       .form-group

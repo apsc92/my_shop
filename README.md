@@ -1,24 +1,15 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Stack:
 
-Things you may want to cover:
+* Rails 5.0
+* Ruby 2.3.0
+* PostgreSQL
 
-* Ruby version
+Setup:
+  * rake db:migrate
+  * rake db:seed
 
-* System dependencies
+Preview:
+  https://myshopdemo.herokuapp.com/
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
