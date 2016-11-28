@@ -1,8 +1,8 @@
 - @no_basket = true
-.row.col-md-9.margin-top
+.row.col-md-9.margin-left
   .panel.panel-primary
     .panel-heading
-      Build Order
+      Product Details
     .panel-body
       = render 'orders/order_listing'
 
@@ -17,4 +17,4 @@
             .col-md-2
               = submit_tag 'Apply', class: 'form-control btn btn-primary'
 
-      = render 'orders/customer_detail'
+  = render 'orders/customer_detail'

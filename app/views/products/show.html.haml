@@ -1,9 +1,9 @@
-.row.col-md-6.margin-top
+.row.col-md-6.margin-top.margin-left
   .panel.panel-primary
     .panel-heading
       Product Detail
     .panel-body
-      .row.col-md-8
+      .row.col-md-8{style: 'margin-left: 2px'}
         %h2= @product.name
         %h4= show_in_currency @product.price
       .row.col-md-8
