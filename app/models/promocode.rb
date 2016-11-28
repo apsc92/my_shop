@@ -1,5 +1,5 @@
 class Promocode < ApplicationRecord
-  validates_presence_of :name
+  validates :name, presence: true, uniqueness: true
   validate :has_percentage_or_flat_disc
 
   def has_percentage_or_flat_disc

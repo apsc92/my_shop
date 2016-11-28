@@ -12,11 +12,12 @@ class OrdersController < ApplicationController
   end
 
   def apply_promocode
+    order = Order.find(params[:id])
     promocode = Promocode.find_by_name(params[:promocode])
     if promocode # Check if promocode is correct
       if promocode_applicable?(promocode)
-        current_order.applied_promo_ids << promocode.id
-        current_order.save
+        order.applied_promo_ids << promocode.id
+        order.save
       end
     else
       flash[:alert] = 'No such promocode exist'

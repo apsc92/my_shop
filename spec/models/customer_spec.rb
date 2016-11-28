@@ -20,8 +20,8 @@ RSpec.describe Customer, type: :model do
 
   describe "Associations" do
     it "has many credit_cards" do
-      assc = described_class.reflect_on_association(:credit_card)
-      expect(assc.macro).to eq :has_one
+      assc = described_class.reflect_on_association(:credit_cards)
+      expect(assc.macro).to eq :has_many
     end
 
     it "has many orders" do

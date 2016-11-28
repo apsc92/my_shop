@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:show]
   resources :order_items, only: [:destroy, :update]
   match 'checkout' => 'orders#checkout', :as => 'checkout', via: [:get, :patch]
-  match 'apply_promocode' => 'orders#apply_promocode', via: [:post]
-  delete 'remove_promocode/:promocode_id' => 'orders#remove_promocode', :as => 'remove_promocode'
+  match 'apply_promocode/:id' => 'orders#apply_promocode', via: [:post], :as => 'apply_promocode'
+  put 'remove_promocode/:promocode_id' => 'orders#remove_promocode', :as => 'remove_promocode'
   post 'confirm_order' => 'orders#confirm_order'
 end

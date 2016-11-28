@@ -10,11 +10,13 @@
         = render 'orders/promocode_listing', final_order: false
 
       .row
-        = form_tag apply_promocode_path do
+        = form_tag apply_promocode_path(current_order.id) do
           %p
             .col-md-4
               %input.form-control{:name => "promocode", :type => "text", placeholder: 'Apply promocodes here', :required => true}
             .col-md-2
               = submit_tag 'Apply', class: 'form-control btn btn-primary'
+  %br
+  %br
 
   = render 'orders/customer_detail'
