@@ -64,6 +64,7 @@ class OrdersController < ApplicationController
   end
 
   def load_promocodes
+    # To list in order in which they are applied
     @applied_promos = []
     @order.applied_promo_ids.each do |promo_id|
       @applied_promos << Promocode.find(promo_id)

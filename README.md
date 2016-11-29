@@ -19,8 +19,6 @@ The [MyShop app](https://github.com/apsc92/my_shop) is a sample e-commerce consi
 * `RAILS_ENV=development rake db:migrate`
 * `RAILS_ENV=development rake db:seed`
 
-* Ensure to set a env variable `ENV['USERKEY']` as this is used for encrypting sensitive data before saving to database.
-
 
 ## Assumptions:
 * All products are enough in stock(always available)
