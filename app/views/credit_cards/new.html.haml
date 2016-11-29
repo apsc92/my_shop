@@ -1,0 +1,25 @@
+.row.col-md-9.margin-left
+  .panel.panel-primary
+    .panel-heading
+      Build Order
+    .panel-body
+      %h3 Payment Details
+      %br
+      .row.col-md-6
+        - if @credit_card.errors.any?
+          #error_explanation
+            %h2
+              = pluralize(@credit_card.errors.count, "error")
+              prohibited this article from being saved:
+            %ul
+              - @credit_card.errors.full_messages.each do |msg|
+                %li= msg
+
+        = form_for :credit_card, url: customer_credit_cards_path(customer_id: current_user.id), method: :post do |credit_card_form|
+          .form-group
+            = credit_card_form.label :owner_name
+            = credit_card_form.text_field :owner_name, class: 'form-control', place: 'Name on card'
+          .form-group
+            = credit_card_form.label :number
+            = credit_card_form.text_field :number, class: 'form-control'
+          = credit_card_form.submit 'Place Order' , class: 'btn btn-primary', required: :true

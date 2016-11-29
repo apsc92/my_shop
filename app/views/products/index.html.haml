@@ -1,0 +1,15 @@
+%h2{:style => "margin: 25px"} Products
+%br
+.container
+  .row
+    .col-md-12
+      .row
+        - @products.each do |product|
+          .col-sm-4.col-lg-4.col-md-4
+            .thumbnail
+              %img{:alt => "", :src => product.image_url, :width => "150", :height => "320"}/
+              %hr
+              .caption
+                %h4.pull-right= show_in_currency product.price
+                %h4
+                  %a{:href => product_path(product)}= product.name

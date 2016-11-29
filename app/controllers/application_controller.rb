@@ -4,6 +4,16 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def current_user
+    @current_user ||= login_from_session || false
+  end
+
+  def login_from_session
+    if session[:customer_id]
+      @customer = Customer.find_by_id(session[:customer_id])
+    end
+  end
+
   def current_order
     @current_order ||= begin
       if has_order?
@@ -20,5 +30,5 @@ class ApplicationController < ActionController::Base
     session[:order_id] && @current_order = Order.includes(:order_items).find(session[:order_id])
   end
 
-  helper_method :current_order, :has_order?
+  helper_method :current_order, :has_order?, :current_user
 end

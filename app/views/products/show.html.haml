@@ -1,15 +1,18 @@
-.row.col-md-6.margin-top.margin-left
-  .panel.panel-primary
-    .panel-heading
-      Product Detail
-    .panel-body
-      .row.col-md-8{style: 'margin-left: 2px'}
-        %h2= @product.name
-        %h4= show_in_currency @product.price
-      .row.col-md-8
-        = form_tag buy_product_path(@product.id), id: 'product_detail' do
-          %p
-            .col-md-4
-              = select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9]), class: 'form-control'
-            .col-md-4
-              = submit_tag 'Add to cart', class: 'adding_to_basket form-control btn btn-success'
+%h2{:style => "margin: 25px"} Product Detail
+%br
+.container
+  .row
+    .col-md-5
+      %img{:alt => "", :src => @product.image_url, :width => "340", :height => "320", :class => 'product_image'}
+    .col-md-6
+      %h3{style: 'margin:0'}= @product.name
+      %h4= show_in_currency @product.price
+      %hr
+      = form_tag buy_product_path(@product.id), id: 'product_detail' do
+        %h5= @product.description
+        %br
+        .row
+          .col-md-2
+            = select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9]), class: 'form-control'
+          .col-md-4
+            = submit_tag 'Add to cart', class: 'adding_to_basket form-control btn btn-success'
