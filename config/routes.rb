@@ -8,10 +8,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :orders, only: [:show]
+  resources :customers, only: [:new, :create] do
+    resources :credit_cards, only: [:new, :create]
+  end
+
+  resources :orders, only: [:show, :edit] do
+    resources :addresses, only: [:new, :create]
+  end
+
   resources :order_items, only: [:destroy, :update]
-  match 'checkout' => 'orders#checkout', :as => 'checkout', via: [:get, :patch]
   match 'apply_promocode/:id' => 'orders#apply_promocode', via: [:post], :as => 'apply_promocode'
   put 'remove_promocode/:promocode_id' => 'orders#remove_promocode', :as => 'remove_promocode'
-  post 'confirm_order' => 'orders#confirm_order'
 end

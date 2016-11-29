@@ -1,21 +1,35 @@
-- @no_basket = true
 .row.col-md-9.margin-left
   .panel.panel-primary
     .panel-heading
-      Review Order
+      Your cart
     .panel-body
-      = render 'orders/order_listing', final_order: false
-      - if @applied_promos.present?
-        = render 'orders/promocode_listing', final_order: false
-      .row
-        = form_tag apply_promocode_path(current_order.id) do
-          %p
-            .col-md-4
-              %input.form-control{:name => "promocode", :type => "text", placeholder: 'Apply promocodes here', :required => true}
-            .col-md-2
-              = submit_tag 'Apply', class: 'form-control btn btn-info'
-      %br
-      %br
-      .row
-        .col-md-offset-5.col-md-4
-          = link_to 'Proceed to Checkout', new_customers_path, class: 'btn btn-primary', id: 'proceed_to_checkout'
+      - if @order_items.count > 0
+        = render 'orders/order_listing', final_order: false
+        - if @applied_promos.present?
+          = render 'orders/promocode_listing', final_order: false
+        .row
+          .col-md-4
+            Offers available:
+            %ul
+            - @bundle_discounts.each do |disc|
+              %li
+                = disc.offer_statement
+
+        .row
+          = form_tag apply_promocode_path(current_order.id) do
+            %p
+              .col-md-4
+                %input.form-control{:name => "promocode", :type => "text", placeholder: 'Apply promocodes here', :required => true}
+              .col-md-2
+                = submit_tag 'Apply', class: 'form-control btn btn-info'
+        %br
+        %br
+        .row
+          .col-md-offset-5.col-md-4
+            - if current_user
+              = link_to 'Proceed to Checkout', new_order_address_path(order_id: current_order.id), class: 'btn btn-primary', id: 'proceed_to_checkout'
+            - else
+              = link_to 'Proceed to Checkout', new_customer_path, class: 'btn btn-primary', id: 'proceed_to_checkout', remote: true
+      - else
+        %h2 Your Shopping cart is empty !!
+

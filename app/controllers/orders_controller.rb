@@ -1,57 +1,33 @@
 class OrdersController < ApplicationController
-  before_action :load_promocodes_and_customer, only: [:checkout]
-  before_action :load_order_and_items, only: [:checkout, :confirm_order]
+  before_action :load_order_and_items, only: [:show, :edit, :apply_promocode]
 
   def show
-    @order = Order.find(params[:id])
-    @order_items = @order.order_items
   end
 
-  def checkout
-    @credit_card = CreditCard.new(customer: @customer)
+  def edit
+    @bundle_discounts = BundleDiscount.all
+    @applied_promos = Promocode.where(id: @order.applied_promo_ids)
   end
 
   def apply_promocode
-    order = Order.find(params[:id])
     promocode = Promocode.find_by_name(params[:promocode])
     if promocode # Check if promocode is correct
       if promocode_applicable?(promocode)
-        order.applied_promo_ids << promocode.id
-        order.save
+        @order.applied_promo_ids << promocode.id
+        @order.save
       end
     else
       flash[:alert] = 'No such promocode exist'
     end
-    redirect_to checkout_path
+    redirect_to edit_order_path(@order)
   end
 
-  def confirm_order
-    begin
-      @order.address = Address.create(order_params[:address])
-      customer_params = order_params[:customer]
-      existing_customer = Customer.where(email: customer_params[:email]).first
-      if existing_customer
-        @order.customer = existing_customer
-        @order.save
-      end
-      customer = @order.customer
-      customer.credit_cards << CreditCard.create(customer_params[:credit_card])
-      customer.update_attributes(name: customer_params[:name], email: customer_params[:email])
-      @order.confirm
-      session[:order_id] = nil
-      flash[:notice] = 'Order successfully placed and will be delivered your address'
-      redirect_to order_path(@order.id)
-    rescue
-      flash[:alert] = 'Problem encountered while placing order.Please retry'
-      redirect_to checkout_path
-    end
-  end
 
   def remove_promocode
     current_order.applied_promo_ids.delete(params[:promocode_id])
     current_order.save
     flash[:notice] = 'Promocode removed successfully'
-    redirect_to checkout_path
+    redirect_to edit_order_path(current_order)
   end
 
   private
@@ -83,12 +59,7 @@ class OrdersController < ApplicationController
   end
 
   def load_order_and_items
-    @order = current_order
-    @order_items = current_order.order_items
-  end
-
-  def load_promocodes_and_customer
-    @applied_promos = Promocode.where(id: current_order.applied_promo_ids)
-    @customer = current_order.customer
+    @order = Order.find(params[:id])
+    @order_items = @order.order_items
   end
 end
