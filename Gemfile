@@ -41,6 +41,8 @@ end
 
 group :test do
   gem 'database_cleaner'
+  gem "simplecov"
+  gem "codeclimate-test-reporter", "~> 1.0.0"
 end
 
 group :development do

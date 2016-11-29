@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
         @order.save
       end
     else
-      flash[:alert] = 'No such promocode exist'
+      flash[:alert] = 'No such promocode exists'
     end
     redirect_to edit_order_path(@order)
   end
