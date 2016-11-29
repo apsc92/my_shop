@@ -3,7 +3,8 @@
     %tr
       %th #
       %th Promocode
-      %th Action
+      - if !final_order
+        %th Action
   %tbody
     - @applied_promos.each_with_index do |promo, index|
       %tr

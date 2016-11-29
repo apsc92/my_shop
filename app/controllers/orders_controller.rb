@@ -1,15 +1,12 @@
 class OrdersController < ApplicationController
   before_action :load_order_and_items, only: [:show, :edit, :apply_promocode, :remove_promocode]
+  before_action :load_promocodes, only: [:show, :edit]
 
   def show
   end
 
   def edit
     @bundle_discounts = BundleDiscount.all
-    @applied_promos = []
-    @order.applied_promo_ids.each do |promo_id|
-      @applied_promos << Promocode.find(promo_id)
-    end
   end
 
   def apply_promocode
@@ -64,5 +61,12 @@ class OrdersController < ApplicationController
   def load_order_and_items
     @order = Order.find(params[:id])
     @order_items = @order.order_items
+  end
+
+  def load_promocodes
+    @applied_promos = []
+    @order.applied_promo_ids.each do |promo_id|
+      @applied_promos << Promocode.find(promo_id)
+    end
   end
 end
