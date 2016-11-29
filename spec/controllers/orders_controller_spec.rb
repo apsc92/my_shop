@@ -26,4 +26,14 @@ RSpec.describe OrdersController, type: :controller do
       expect(@order.reload.applied_promo_ids).not_to include(@promocode.id.to_s)
     end
   end
+
+  describe 'PUT remove_promocode' do
+    it 'should remove the concerned promocode' do
+      @promocode = create(:promocode)
+      @order = create(:order)
+      @order.applied_promo_ids << @promocode.id
+      put :remove_promocode, {promocode_id: @promocode.id, id: @order.id}
+      expect(@order.reload.applied_promo_ids).not_to include(@promocode.id.to_s)
+    end
+  end
 end
