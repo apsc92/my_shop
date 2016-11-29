@@ -5,9 +5,10 @@
 $(document).ready ->
   window.itemChange = (id) ->
     id = $('.order_item_id').text();
+    order_id = $('.order_id').text();
     quantity = $('#item_quantity').val();
     $.ajax
-      url: '/order_items/' + id + '?quantity=' + quantity,
+      url: '/orders/' + order_id + '/order_items/' + id + '?quantity=' + quantity,
       type: 'PUT'
       success: (result) ->
         window.location.reload()

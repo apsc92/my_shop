@@ -11,4 +11,4 @@
         %td= promo.name
         - if !final_order
           %td
-            = link_to 'Remove', remove_promocode_path(promo.id), method: :put, class: "btn btn-danger btn-xs"
+            = link_to 'Remove', remove_promocode_path(id: current_order.id, promocode_id: promo.id), method: :put, class: "btn btn-danger btn-xs"

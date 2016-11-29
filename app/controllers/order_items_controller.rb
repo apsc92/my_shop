@@ -1,11 +1,11 @@
 class OrderItemsController < ApplicationController
-  before_action :load_item
+  before_action :load_item, :load_order
 
   def destroy
     @order_item.destroy
     flash[:notice] = 'Item removed successfully'
-    redirect_to root_path and return if current_order.order_items.count == 0
-    redirect_to checkout_path
+    redirect_to root_path and return if @order.order_items.count == 0
+    redirect_to edit_order_path(@order)
   end
 
   def update
@@ -16,6 +16,10 @@ class OrderItemsController < ApplicationController
   end
 
   private
+
+  def load_order
+    @order = Order.find(params[:order_id])
+  end
 
   def load_item
     @order_item = OrderItem.find(params[:id])

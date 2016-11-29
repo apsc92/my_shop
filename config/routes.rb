@@ -14,9 +14,9 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:show, :edit] do
     resources :addresses, only: [:new, :create]
+    resources :order_items, only: [:destroy, :update]
   end
 
-  resources :order_items, only: [:destroy, :update]
   match 'apply_promocode/:id' => 'orders#apply_promocode', via: [:post], :as => 'apply_promocode'
-  put 'remove_promocode/:promocode_id' => 'orders#remove_promocode', :as => 'remove_promocode'
+  put 'orders/:id/remove_promocode/:promocode_id' => 'orders#remove_promocode', :as => 'remove_promocode'
 end

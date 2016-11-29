@@ -1,4 +1,5 @@
 class CreditCardsController < ApplicationController
+  before_action :load_customer
 
   def new
     @credit_card = CreditCard.new
@@ -6,7 +7,7 @@ class CreditCardsController < ApplicationController
 
   def create
     @credit_card = CreditCard.new(credit_card_params)
-    @credit_card.customer = current_user
+    @credit_card.customer = @customer
     if @credit_card.save
       current_order.confirm
       session[:order_id] = nil
@@ -18,6 +19,10 @@ class CreditCardsController < ApplicationController
   end
 
   private
+
+  def load_customer
+    @customer = Customer.find(params[:customer_id])
+  end
 
   def credit_card_params
     params.require(:credit_card).permit(:owner_name, :number)
