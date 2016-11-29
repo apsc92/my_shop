@@ -8,11 +8,23 @@
 
 #
 
-PRODUCTS = [['Smart Hub', 49.99], ['Motion Sensor', 24.99], ['Wireless Camera', 99.99],
-['Smoke Sensor', 19.99], ['Water Leak Sensor', 14.99]]
+PRODUCTS = [
+  ['Smart Hub', 49.99, '/smart_hub.jpg', 'Receive notifications on your phone based on the status of your connected devices - such as whether doors or windows are open 
+    or closed or the lights are on or off, also can receive SOS notifications when your family is 
+    in emergency'],
+
+  ['Motion Sensor', 24.99, '/motion_sensor.jpg', 'It can use with lamps, incandescent lamps (bulbs), old-fashioned fluorescent lamps, 
+    electronic fluorescent ring lamps, spotlights, transformers, small electrical appliances, and other all other appliance.'],
+
+  ['Wireless Camera', 99.99, '/wireless_camera.jpg', '2 WAY AUDIO & SD CARD SLOT: Talk to other side of camera with the
+    help of inbuilt microphone & speaker. Record Videos in SD card as it has provision for SD card slot also.
+    It supports upto 128 GB capacity Card.'],
+
+  ['Smoke Sensor', 19.99, '/smoke_sensor.jpg', 'NO ELECTRIC POWER SUPPLY REQUIRED, BATTERY OPERATED'],
+  ['Water Leak Sensor', 14.99, '/water_leak.jpg', 'Protect your home against costly water damage by detecting water leaks instantly. Comes with English manual']]
 
 PRODUCTS.each do |product|
-  Product.find_or_create_by(name: product[0], price: product[1])
+  Product.find_or_create_by(name: product[0], price: product[1], image_url: product[2], description: product[3])
 end
 
 PROMOCODES = [["20%OFF", 'percentage', false, 20], ["5%OFF", 'percentage', true, 5], ['20POUNDSOFF', 'flat', true, 20]]

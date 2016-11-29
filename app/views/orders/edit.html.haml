@@ -1,0 +1,21 @@
+- @no_basket = true
+.row.col-md-9.margin-left
+  .panel.panel-primary
+    .panel-heading
+      Review Order
+    .panel-body
+      = render 'orders/order_listing', final_order: false
+      - if @applied_promos.present?
+        = render 'orders/promocode_listing', final_order: false
+      .row
+        = form_tag apply_promocode_path(current_order.id) do
+          %p
+            .col-md-4
+              %input.form-control{:name => "promocode", :type => "text", placeholder: 'Apply promocodes here', :required => true}
+            .col-md-2
+              = submit_tag 'Apply', class: 'form-control btn btn-info'
+      %br
+      %br
+      .row
+        .col-md-offset-5.col-md-4
+          = link_to 'Proceed to Checkout', new_customers_path, class: 'btn btn-primary', id: 'proceed_to_checkout'
