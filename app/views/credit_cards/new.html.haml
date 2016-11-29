@@ -1,7 +1,7 @@
 .row.col-md-9.margin-left
   .panel.panel-primary
     .panel-heading
-      Build Order
+      Add payment details
     .panel-body
       %h3 Payment Details
       %br
@@ -17,9 +17,9 @@
 
         = form_for :credit_card, url: customer_credit_cards_path(customer_id: current_user.id), method: :post do |credit_card_form|
           .form-group
-            = credit_card_form.label :owner_name
-            = credit_card_form.text_field :owner_name, class: 'form-control', place: 'Name on card'
+            = credit_card_form.label :owner_name, 'Name on card'
+            = credit_card_form.text_field :owner_name, class: 'form-control', placeholder: 'Name on card'
           .form-group
-            = credit_card_form.label :number
+            = credit_card_form.label :number, 'Credit card number'
             = credit_card_form.text_field :number, class: 'form-control'
           = credit_card_form.submit 'Place Order' , class: 'btn btn-primary', required: :true

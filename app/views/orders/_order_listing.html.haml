@@ -14,11 +14,11 @@
         %td= item.product.name
         %td.hidden.order_item_id= item.id
         %td
-          .col-md-6
+          .col-md-5
             - if final_order
               = item.quantity
             - else
-              = select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9], selected = item.quantity), class: 'form-control', id: 'item_quantity', :onchange => "itemChange()"
+              = select_tag 'quantity', options_for_select([1,2,3,4,5,6,7,8,9], selected = item.quantity), class: 'form-control', id: 'item_quantity', :onchange => "itemChange()", :style => "width: 70px"
 
         %td= item.cost.round(2)
         - if !final_order

@@ -75,7 +75,7 @@ section.content {
 }
 
 hr{
-   border: 1px solid black;
+   border: 1px solid #887D83;
 }
 
 
@@ -90,4 +90,12 @@ hr{
 
 body{
   font-family: 'Lato', serif;
+}
+
+.profile-img-card {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    border-radius: 50%;
 }

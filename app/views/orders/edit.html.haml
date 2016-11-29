@@ -14,6 +14,7 @@
             - @bundle_discounts.each do |disc|
               %li
                 = disc.offer_statement
+        %br
 
         .row
           = form_tag apply_promocode_path(current_order.id) do

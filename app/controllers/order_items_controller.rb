@@ -11,6 +11,7 @@ class OrderItemsController < ApplicationController
   def update
     @order_item.quantity = params[:quantity]
     @order_item.save
+    flash[:notice] = 'Item quantity updated successfully'
     render json: {success: true}
   end
 
